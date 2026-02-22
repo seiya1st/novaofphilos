@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>novaofphilos</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #ffffff;
+    overflow-x: hidden;
+}
+
+/* ===== 오버레이 ===== */
+#overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.8s ease;
+}
+
+.overlay-content {
+    text-align: center;
+    color: white;
+}
+
+.overlay-content img {
+    width: 90px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+/* ===== 컨테이너 ===== */
+.container {
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+}
+
+/* ===== 네비 ===== */
+.nav {
+    display: inline-flex;
+    gap: 20px;
+    font-size: 12px;
+    margin-bottom: 30px;
+}
+
+.nav a {
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+
+/* ===== 페이지 공통 ===== */
+.page {
+    display: none;
+    animation: fadeIn 0.6s ease;
+}
+
+.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* ===== 이미지 ===== */
+.image-section img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 30px;
+}
+
+/* ===== 데스크탑 ===== */
+@media (min-width: 1024px) {
+    .container {
+        max-width: 1100px;
+        margin: auto;
+    }
+
+    .nav {
+        gap: 60px;
+        font-size: 16px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎵 배경음 -->
+<audio id="bgm" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- 🔲 오버레이 -->
+<div id="overlay">
+    <div class="overlay-content">
+        <p>click image</p>
+        <img src="img/icon.png" id="enterBtn" alt="enter">
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- 네비 -->
+    <nav class="nav">
+        <a onclick="showPage('home')">HOME</a>
+        <a onclick="showPage('about')">ABOUT</a>
+        <a onclick="showPage('backup')">BACKUP</a>
+        <a onclick="showPage('guest')">GUEST</a>
+    </nav>
+
+    <!-- HOME -->
+    <div id="home" class="page active">
+        <div class="image-section">
+            <img src="img/1.jpg">
+        </div>
+        <div class="image-section">
+            <img src="img/2.jpg">
+        </div>
+    </div>
+
+    <!-- ABOUT -->
+    <div id="about" class="page">
+        <h2>ABOUT PAGE</h2>
+    </div>
+
+    <!-- BACKUP -->
+    <div id="backup" class="page">
+        <h2>BACKUP PAGE</h2>
+    </div>
+
+    <!-- GUEST -->
+    <div id="guest" class="page">
+        <h2>GUEST PAGE</h2>
+    </div>
+
+</div>
+
+<script>
+const enterBtn = document.getElementById("enterBtn");
+const overlay = document.getElementById("overlay");
+const audio = document.getElementById("bgm");
+
+enterBtn.addEventListener("click", function() {
+    audio.play();
+    overlay.style.opacity = "0";
+    setTimeout(() => {
+        overlay.style.display = "none";
+    }, 800);
+});
+
+function showPage(pageId) {
+    document.querySelectorAll(".page").forEach(page => {
+        page.classList.remove("active");
+    });
+    document.getElementById(pageId).classList.add("active");
+}
+</script>
+
+</body>
+</html>
