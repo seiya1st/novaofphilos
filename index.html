@@ -181,6 +181,60 @@ body {
         font-size: 11px;
     }
 }
+/* ===== BACKUP GALLERY ===== */
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.card img {
+    width: 100%;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.card .overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.card .overlay span {
+    color: white;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+/* 🖱 hover 효과 */
+.card:hover img {
+    transform: scale(1.08);
+}
+
+.card:hover .overlay {
+    opacity: 1;
+}
+
+/* 📱 모바일 */
+@media (max-width: 768px) {
+    .gallery {
+        gap: 15px;
+    }
+}
 </style>
 </head>
 
@@ -242,9 +296,26 @@ body {
 </div>
 
     <!-- BACKUP -->
-    <div id="backup" class="page">
-        <h2>BACKUP PAGE</h2>
+    <!-- BACKUP -->
+<div id="backup" class="page">
+    <div class="gallery">     
+
+        <div class="card">
+            <img src="img/img/33.jpg" alt="">
+            <div class="overlay">
+                <span>유케 님</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="img/img/44.jpg" alt="">
+            <div class="overlay">
+                <span>태식 님</span>
+            </div>
+        </div>
+
     </div>
+</div>
 
     <!-- GUEST -->
     <div id="guest" class="page">
